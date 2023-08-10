@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Drag & Drop</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        border: 0;
+      }
+      .box {
+        background-color: #bdbdbd;
+        border-radius: 6px;
+        padding: 5px;
+        display: inline;
+        cursor: pointer;
+      }
+      .card {
+        background-color: #bdbdbd;
+        border: 0;
+      }
+      .place {
+        border: 2px solid rgb(255, 255, 255);
+      }
+
+      .headerArea {
+        text-align: center;
+        background-color: black;
+        color: white;
+        line-height: 2.5;
+      }
+      .footerArea {
+        text-align: center;
+        background-color: black;
+        color: white;
+        line-height: 2.5;
+      }
+      .headerDrop {
+        width: 100%;
+        height: 7vh;
+        /* border: 1px solid green; */
+        margin-bottom: 20px;
+      }
+      .navbarDrop {
+        width: 100%;
+        height: 8vh;
+        margin-bottom: 20px;
+        /* border: 1px solid rgb(0, 23, 128); */
+      }
+      .sliderDrop {
+        width: 100%;
+        height: 63vh;
+        /* border: 1px solid rgb(128, 0, 9); */
+      }
+      .cardDrop {
+        width: 100%;
+        height: 108vh;
+        /* border: 1px solid rgb(128, 105, 0); */
+        padding: 18px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-content: center;
+        align-items: center;
+      }
+      .footerDrop {
+        width: 100%;
+        height: 7vh;
+        /* border: 1px solid green; */
+      }
+    </style>
+  </head>
+  <body ondblclick="bod()">
+    <section class="container-fluid p-0 m-0 side" id="section-icon">
+      <div class="collapse side" id="navbarToggleExternalContent">
+        <div class="bg-dark p-4 side">
+          <div class="container">
+            <div class="row">
+              <!-- header  -->
+              <div
+                class="header col lh-lg box text-dark text-center fw-bold m-1 p-1"
+                draggable="true"
+              >
+                Header
+              </div>
+
+              <!-- Navbar  -->
+              <div
+                class="col box text-dark text-center fw-bold m-1 p-1 dropdown"
+                draggable="true"
+              >
+                <button
+                  class="btn fw-bold text-dark navbar dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Navbar
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="#"
+                      id="rightNavbar"
+                      onclick="right()"
+                      >Right</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="#"
+                      id="centerNavbar"
+                      onclick="center()"
+                      >Center</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="#"
+                      id="leftNavbar"
+                      onclick="left()"
+                      >Left</a
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Slider  -->
+              <div
+                class="col box text-dark text-center fw-bold m-1 p-1 dropdown"
+                draggable="true"
+              >
+                <button
+                  class="btn fw-bold text-dark slider dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton2"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Slider
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                  <li>
+                    <a class="dropdown-item" href="#" onclick="small()"
+                      >Small</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" onclick="medium()"
+                      >Medium</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" onclick="large()"
+                      >Large</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" onclick="larger()"
+                      >X-Large</a
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Card View  -->
+              <div
+                class="col box text-dark text-center fw-bold m-1 p-1 dropdown"
+                draggable="true"
+              >
+                <button
+                  class="btn fw-bold card dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton3"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Card View
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                  <li>
+                    <a class="dropdown-item" href="#" onclick="horizontal()"
+                      >Horizontal</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" onclick="vertical()"
+                      >Vertical</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" onclick="navigation()"
+                      >Navigation Card</a
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Footer  -->
+              <div
+                class="col box text-dark text-center footer lh-lg fw-bold m-1 p-1"
+                draggable="true"
+              >
+                Footer
+              </div>
+            </div>
+            <div class="row">
+              <form>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label text-white"
+                    >Text</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="text"
+                    autocomplete="off"
+                    placeholder="Type your text here"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label text-white"
+                    >Background Color</label
+                  >
+
+                  <input
+                    type="color"
+                    class="form-control col-6"
+                    id="color"
+                    autocomplete="off"
+                    placeholder="Type your text here"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  class="btn btn-dark box text-dark fw-bold p-2"
+                  onclick="send()"
+                >
+                  Submit
+                </button>
+              </form>
+              -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="navbar navbar-dark bg-dark" id="navbar-icon">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarToggleExternalContent"
+            aria-controls="navbarToggleExternalContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <p class="text-white fw-bold text-center p-0 m-0">
+            Clicked out & drop some amazing feature
+          </p>
+          <button
+            type="button"
+            id="done-btn"
+            class="btn btn-dark btn-outline-light"
+            onclick="done()"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              fill="currentColor"
+              class="bi bi-box-arrow-in-right"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
+              />
+            </svg>
+            Done
+          </button>
+        </div>
+      </nav>
+    </section>
+    <section class="container-fluid p-0 m-0" id="section-main">
+      <div class="headerDrop" id="headerDrop" ondblclick="textHeader()"></div>
+      <div class="navbarDrop" id="navbarDrop"></div>
+      <div class="sliderDrop" id="sliderDrop"></div>
+      <div class="cardDrop" id="cardDrop"></div>
+      <div class="footerDrop" id="footerDrop" onclick="textFooter()"></div>
+    </section>
+
+    <script>
+      // header
+      var header = document.querySelector(".header");
+      var headerDrop = document.querySelector(".headerDrop");
+
+      //header
+      header.addEventListener("dragstart", (e) => {
+        console.log("start");
+        e.target.className += " place";
+      });
+      header.addEventListener("dragend", (e) => {
+        console.log("end");
+      });
+      headerDrop.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        console.log("over");
+      });
+      headerDrop.addEventListener("dragenter", (e) => {
+        console.log("enter");
+      });
+      headerDrop.addEventListener("dragleave", (e) => {
+        console.log("leave");
+      });
+      headerDrop.addEventListener("drop", (e) => {
+        e.target.className += " headerArea";
+        e.target.innerHTML = "Header";
+        console.log("drop");
+      });
+
+      //   navbar
+      var navbar = document.querySelector(".navbar");
+      var navbarDrop = document.querySelector(".navbarDrop");
+
+      //navbar
+      navbar.addEventListener("dragstart", (e) => {
+        console.log("start");
+        e.target.className += " place";
+      });
+      navbar.addEventListener("dragend", (e) => {
+        console.log("end");
+      });
+      navbarDrop.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        console.log("over");
+      });
+      navbarDrop.addEventListener("dragenter", (e) => {
+        console.log("enter");
+      });
+      navbarDrop.addEventListener("dragleave", (e) => {
+        console.log("leave");
+      });
+      navbarDrop.addEventListener("drop", (e) => {
+        e.target.innerHTML =
+          '<ul class="nav nav-dark justify-content-center" style="background-color: #cfe3f3; padding:5px"><a class="navbar-brand text-dark" href="#">Navbar</a><li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Active</a></li><li class="nav-item"> <a class="nav-link" href="#">Link</a></li><li class="nav-item"> <a class="nav-link" href="#">Link</a></li><li class="nav-item"><a class="nav-link disabled">Disabled</a></li></ul>';
+        console.log("drop");
+      });
+      function right() {
+        document.getElementById("navbarDrop").innerHTML =
+          '<ul class="nav nav-dark justify-content-right" style="background-color: #cfe3f3; padding:5px"><a class="navbar-brand text-dark" href="#">Navbar</a><li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Active</a></li><li class="nav-item"> <a class="nav-link" href="#">Link</a></li><li class="nav-item"> <a class="nav-link" href="#">Link</a></li><li class="nav-item"><a class="nav-link disabled">Disabled</a></li></ul>';
+      }
+      function center() {
+        document.getElementById("navbarDrop").innerHTML =
+          '<ul class="nav nav-dark justify-content-center" style="background-color: #cfe3f3; padding:5px"><a class="navbar-brand text-dark" href="#">Navbar</a><li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Active</a></li><li class="nav-item"> <a class="nav-link" href="#">Link</a></li><li class="nav-item"> <a class="nav-link" href="#">Link</a></li><li class="nav-item"><a class="nav-link disabled">Disabled</a></li></ul>';
+      }
+      function left() {
+        document.getElementById("navbarDrop").innerHTML =
+          '<ul class="nav nav-dark justify-content-end" style="background-color: #cfe3f3; padding:5px"><a class="navbar-brand text-dark" href="#">Navbar</a><li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Active</a></li><li class="nav-item"> <a class="nav-link" href="#">Link</a></li><li class="nav-item"> <a class="nav-link" href="#">Link</a></li><li class="nav-item"><a class="nav-link disabled">Disabled</a></li></ul>';
+      }
+
+      //   slider
+      var slider = document.querySelector(".slider");
+      var sliderDrop = document.querySelector(".sliderDrop");
+
+      //slider
+      slider.addEventListener("dragstart", (e) => {
+        console.log("start");
+        e.target.className += " place";
+      });
+      slider.addEventListener("dragend", (e) => {
+        console.log("end");
+      });
+      sliderDrop.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        console.log("over");
+      });
+      sliderDrop.addEventListener("dragenter", (e) => {
+        console.log("enter");
+      });
+      sliderDrop.addEventListener("dragleave", (e) => {
+        console.log("leave");
+      });
+      sliderDrop.addEventListener("drop", (e) => {
+        e.target.innerHTML =
+          '<div id="carouselExample" class="slide carousel slide"style="width:100%;"><div class="carousel-inner"><div class="carousel-item active"><img src="slide1.png" class="d-block w-100" alt="..."></div><div class="carousel-item"><img src="slide2.png" class="d-block w-100" alt="..."></div><div class="carousel-item"><img src="slide3.png" class="d-block w-100" alt="..."></div></div><button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button></div>';
+        console.log("drop");
+      });
+      function small() {
+        document.getElementById("sliderDrop").innerHTML =
+          '<div id="carouselExample" class="slide carousel slide" style="width:25%; margin:auto;"><div class="carousel-inner"><div class="carousel-item active"><img src="slide1.png" class="d-block w-100" alt="..."></div><div class="carousel-item"><img src="slide2.png" class="d-block w-100" alt="..."></div><div class="carousel-item"><img src="slide3.png" class="d-block w-100" alt="..."></div></div><button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button></div>';
+      }
+
+      function medium() {
+        document.getElementById("sliderDrop").innerHTML =
+          '<div id="carouselExample" class="slide carousel slide" style="width:50%; margin:auto;"><div class="carousel-inner"><div class="carousel-item active"><img src="slide1.png" class="d-block w-100" alt="..."></div><div class="carousel-item"><img src="slide2.png" class="d-block w-100" alt="..."></div><div class="carousel-item"><img src="slide3.png" class="d-block w-100" alt="..."></div></div><button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button></div>';
+      }
+
+      function large() {
+        document.getElementById("sliderDrop").innerHTML =
+          '<div id="carouselExample" class="slide carousel slide" style="width:75%; margin:auto;"><div class="carousel-inner"><div class="carousel-item active"><img src="slide1.png" class="d-block w-100" alt="..."></div><div class="carousel-item"><img src="slide2.png" class="d-block w-100" alt="..."></div><div class="carousel-item"><img src="slide3.png" class="d-block w-100" alt="..."></div></div><button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button></div>';
+      }
+
+      function larger() {
+        document.getElementById("sliderDrop").innerHTML =
+          '<div id="carouselExample" class="slide carousel slide" style="width:100%;"><div class="carousel-inner"><div class="carousel-item active"><img src="slide1.png" class="d-block w-100" alt="..."></div><div class="carousel-item"><img src="slide2.png" class="d-block w-100" alt="..."></div><div class="carousel-item"><img src="slide3.png" class="d-block w-100" alt="..."></div></div><button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button></div>';
+      }
+
+      //   card
+      var card = document.querySelector(".card");
+      var cardDrop = document.querySelector(".cardDrop");
+      //card
+      card.addEventListener("dragstart", (e) => {
+        console.log("start");
+        e.target.className += " place";
+      });
+      card.addEventListener("dragend", (e) => {
+        console.log("end");
+      });
+      cardDrop.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        console.log("over");
+      });
+      cardDrop.addEventListener("dragenter", (e) => {
+        console.log("enter");
+      });
+      cardDrop.addEventListener("dragleave", (e) => {
+        console.log("leave");
+      });
+      cardDrop.addEventListener("drop", (e) => {
+        e.target.innerHTML =
+          '<div class="card" style="width: 18rem;"><img class="card-img-top" src="https://www.collinsdictionary.com/images/full/card_199913294.jpg" alt="Card image cap"><div class="card-body"><h5 class="card-title">Card title</h5><p class="card-text">Some quick example text to build on the card title and make up the bulk of the card content.</p><a href="#" class="btn btn-primary">Go somewhere</a></div></div><div class="card" style="width: 18rem;"><img class="card-img-top" src="https://www.collinsdictionary.com/images/full/card_199913294.jpg" alt="Card image cap"><div class="card-body"><h5 class="card-title">Card title</h5><p class="card-text">Some quick example text to build on the card title and make up the bulk of the card content.</p><a href="#" class="btn btn-primary">Go somewhere</a></div></div><div class="card" style="width: 18rem;"><img class="card-img-top" src="https://www.collinsdictionary.com/images/full/card_199913294.jpg" alt="Card image cap"><div class="card-body"><h5 class="card-title">Card title</h5><p class="card-text">Some quick example text to build on the card title and make up the bulk of the card content.</p><a href="#" class="btn btn-primary">Go somewhere</a></div></div>';
+        console.log("drop");
+      });
+      function horizontal() {
+        document.getElementById("cardDrop").innerHTML =
+          '<div class="card"><div class="card-header">Featured</div><div class="card-body"><h5 class="card-title">Special title treatment</h5><p class="card-text">With supporting text below as a natural lead-in to additional content.</p><a href="#" class="btn btn-primary">Go somewhere</a></div></div>';
+      }
+
+      function vertical() {
+        document.getElementById("cardDrop").innerHTML =
+          '<div class="card"><div class="card-header">Featured</div><div class="card-body"><h5 class="card-title">Special title treatment</h5><p class="card-text">With supporting text below as a natural lead-in to additional content.</p><a href="#" class="btn btn-primary">Go somewhere</a></div></div><div class="card"><div class="card-header">Featured</div><div class="card-body"><h5 class="card-title">Special title treatment</h5><p class="card-text">With supporting text below as a natural lead-in to additional content.</p><a href="#" class="btn btn-primary">Go somewhere</a></div></div><div class="card"><div class="card-header">Featured</div><div class="card-body"><h5 class="card-title">Special title treatment</h5><p class="card-text">With supporting text below as a natural lead-in to additional content.</p><a href="#" class="btn btn-primary">Go somewhere</a></div></div>';
+      }
+      function navigation() {
+        document.getElementById("cardDrop").innerHTML =
+          '<div class="card text-center"><div class="card-header"><ul class="nav nav-tabs card-header-tabs"><li class="nav-item"> <a class="nav-link active" aria-current="true" href="#">Active</a></li><li class="nav-item"><a class="nav-link" href="#">Link</a></li><li class="nav-item"><a class="nav-link disabled">Disabled</a></li></ul></div><div class="card-body"><h5 class="card-title">Special title treatment</h5><p class="card-text">With supporting text below as a natural lead-in to additional content.</p><a href="#" class="btn btn-primary">Go somewhere</a></div></div>';
+      }
+
+      // footer
+      var footer = document.querySelector(".footer");
+      var footerDrop = document.querySelector(".footerDrop");
+
+      //footer
+      footer.addEventListener("dragstart", (e) => {
+        console.log("start");
+        e.target.className += " place";
+      });
+      footer.addEventListener("dragend", (e) => {
+        console.log("end");
+      });
+      footerDrop.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        console.log("over");
+      });
+      footerDrop.addEventListener("dragenter", (e) => {
+        console.log("enter");
+      });
+      footerDrop.addEventListener("dragleave", (e) => {
+        console.log("leave");
+      });
+      footerDrop.addEventListener("drop", (e) => {
+        e.target.className += " footerArea";
+        e.target.innerHTML = "footer";
+        console.log("drop");
+      });
+
+      function done() {
+        document.getElementById("navbar-icon").style.display = "none";
+        document.querySelector(".side").style.display = "none";
+      }
+      function bod() {
+        document.getElementById("navbar-icon").style.display = "block";
+        document.querySelector(".side").style.display = "inline-block";
+      }
+
+      var textHead;
+      var textFoot;
+      var hText;
+      var fText;
+
+      function textHeader() {
+        textHead = document.getElementById("headerDrop").innerHTML;
+        document.getElementById("text").value = textHead;
+      }
+      function textFooter() {
+        textFoot = document.getElementById("footerDrop").innerHTML;
+        document.getElementById("text").value = textFoot;
+      }
+
+      function send() {
+        hText = document.getElementById("text").value;
+        // fText = document.getElementById("text").value;
+        document.getElementById("text").value = "";
+        document.getElementById("headerDrop").innerHTML = hText;
+        // document.getElementById("footerDrop").innerHTML = fText;
+      }
+
+      let colorInput = document.querySelector("#color");
+
+      colorInput.addEventListener("input", () => {
+        let color = colorInput.value;
+        document.querySelector("#headerDrop").style.backgroundColor = color;
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
